@@ -22,8 +22,9 @@ app.use(express.json());
 const syncTables = () => {
 
     Author.hasMany(Book);
-    Genre.hasMany(Book);
     Book.belongsTo(Author);
+
+    Genre.hasMany(Book);
     Book.belongsTo(Genre);
 
     Author.sync();
