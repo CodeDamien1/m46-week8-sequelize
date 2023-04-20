@@ -1,56 +1,76 @@
 const Book = require("./model");
 
-//this function adds a new book to the database
-//when funtion has a .function it is a class
+// how to add the book function
 const addBook = async (req, res) => {
-    try {
-        const book = await Book.create({ 
-            title: req.body.title,
-            author: req.body.author,
-            genre: req.body.genre,
-        });
-        res.status(201).json({message: "success", book: book })
-    }catch (error) {
-        console.log(error);
-    }
-};
-// const users = await User.findAll(); <----- finds all books
+  try {
+    const book = await Book.create({
+      title: req.body.title,
+      author: req.body.author,
+      genre: req.body.genre,
+    });
 
-
-//calls on the get all books route
-const getAllBooks = async (req, res) => {
-    try {
-    const books = await Book.findAll();
-        console.log(books);
-    res.send(200).json({message: "success", books: books });
-    }catch (error) {
+    res.status(201).json({ message: "success", book: book });
+  } catch (error) {
     console.log(error);
-    };
+  }
 };
+//how to get all books function
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.findAll();
+
+    res.status(200).json({ message: "success", books: books });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// UPDATE Books.author WHERE Books.title = "damien's book"
 
 const updateBook = async (req, res) => {
-    try {
+  try {
     const updateBook = await Book.update(
-        {
-            author: req.body.newAuthor
+      {
+        author: req.body.newAuthor,
+      },
+      {
+        where: {
+          title: req.body.title,
         },
-        {
-            where: {
-                title: req.body.title,
-            },
-        }
+      }
     );
-        console.log(books);
-    res.send(201).json({message: "success", updateResult: updateBook });
-    }catch (error) {
+
+    res.status(201).json({ message: "success", updateResult: updateBook });
+  } catch (error) {
     console.log(error);
-    };
+  }
 };
+
+// delete function for books
+
+const deleteBook = async (req, res) => {
+  try {
+    const { title } = req.body;
+
+    const book = await Book.destroy({
+      where: {
+        title: title,
+      },
+    });
+
+    res.status(201).json({ message: "success", result: book });
+  } catch (error) {
+    console.log(error);
+  }
+};
+//exporting all modules called upon
 module.exports = {
-    addBook,
-    getAllBooks,
-    updateBook,
-}
+  addBook,
+  getAllBooks,
+  updateBook,
+  deleteBook,
+};
+
 // this is an object
 //{"title": req.body.title, etc}
 
