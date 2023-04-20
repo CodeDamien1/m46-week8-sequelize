@@ -9,6 +9,10 @@ const express = require("express");
     const Author = require("./authors/model");
     const authorRouter = require("./authors/routes");
 
+//Genre Routes
+    const Genre = require("./genres/model");
+    const genreRouter = require("./genres/routes");
+
 const port = process.env.PORT || 5001;
 
 const app = express();
@@ -20,13 +24,18 @@ const syncTables = () => {
     Author.hasMany(Book);
     Book.belongsTo(Author);
 
-    Book.sync({alter: true});
+    Genre.hasMany(Book);
+    Book.belongsTo(Genre);
+
     Author.sync();
+    Genre.sync();
+    Book.sync({alter: true});
 };
 
 //request will hit bookrouter then pass it down to the book routes
     app.use(bookRouter);
     app.use(authorRouter);
+    app.use(genreRouter);
 
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "App is Healthy"});
