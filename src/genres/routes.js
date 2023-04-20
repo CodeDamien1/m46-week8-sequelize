@@ -3,7 +3,7 @@ const genreRouter = Router();
 
 const { addGenre, getGenreAndBooks } = require("./controllers");
 
-authorRouter.post("/authors/addgenre", addGenre);
-authorRouter.get("/authors/getgenreandbooks/:authorname", getGenreAndBooks);
+genreRouter.post("/genres/addgenre", addGenre);
+genreRouter.get("/genres/getgenreandbooks/:genrename", getGenreAndBooks);
 
 module.exports = genreRouter

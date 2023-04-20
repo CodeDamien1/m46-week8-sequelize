@@ -9,7 +9,7 @@ const addGenre = async (req, res) => {
 
     const successResponse = {
         message: "success",
-        author: author,
+        genre: genre,
     };
     res.status(201).json({message: "success", genre: genre })
     }catch (error){
@@ -21,7 +21,7 @@ const addGenre = async (req, res) => {
     try {
         console.log(req.params);
 
-        const author = await Genre.findOne({
+        const genre = await Genre.findOne({
             where: { genrename: req.params.genrename },
             include: Book,
     });
