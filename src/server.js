@@ -2,16 +2,16 @@ require("dotenv").config();
 const express = require("express");
 
 // books routes
-    const Book = require("./books/model");
-    const bookRouter = require("./books/routes");
+const Book = require("./books/model");
+const bookRouter = require("./books/routes");
 
 //author routes
-    const Author = require("./authors/model");
-    const authorRouter = require("./authors/routes");
+const Author = require("./authors/model");
+const authorRouter = require("./authors/routes");
 
 //Genre Routes
-    const Genre = require("./genres/model");
-    const genreRouter = require("./genres/routes");
+const Genre = require("./genres/model");
+const genreRouter = require("./genres/routes");
 
 const port = process.env.PORT || 5001;
 
@@ -20,7 +20,6 @@ const app = express();
 app.use(express.json());
 
 const syncTables = () => {
-
     Author.hasMany(Book);
     Book.belongsTo(Author);
 
@@ -33,9 +32,9 @@ const syncTables = () => {
 };
 
 //request will hit bookrouter then pass it down to the book routes
-    app.use(bookRouter);
-    app.use(authorRouter);
-    app.use(genreRouter);
+app.use(bookRouter);
+app.use(authorRouter);
+app.use(genreRouter);
 
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "App is Healthy"});
