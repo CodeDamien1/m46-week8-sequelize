@@ -8,9 +8,9 @@ const Genre = connection.define("Genre", {
         unique: true,
     },
 }, {timestamps: false},
-  {
+   {
     indexes: [{unique: true, fields: ['genreName']}]
-  }
+   }
 );
 
 module.exports = Genre;

@@ -1,6 +1,7 @@
 const Book = require("./model");
 
-// ================= How to add the book function ===================
+// ============================= how to add the book function =================================
+
 const addBook = async (req, res) => {
   try {
     const book = await Book.create({
@@ -15,9 +16,9 @@ const addBook = async (req, res) => {
     res.status(501).json({message: error.message, error: error});
   }
 };
-//------------------------------------------------------------------------
 
 //================== How to get all books function ===================
+
 const getAllBooks = async (req, res) => {
   try {
     const books = await Book.findAll();
@@ -29,7 +30,7 @@ const getAllBooks = async (req, res) => {
 };
 //------------------------------------------------------------------------
 
-//================== Updates book function ===================
+// ====================== how to update books and adding where function ======================
 //// UPDATE Books.author WHERE Books.title = "damien's book"
 const updateBook = async (req, res) => {
     try {
@@ -76,9 +77,8 @@ module.exports = {
   updateBook,
   deleteBook,
 };
-//------------------------------------------------------------------------
-// this is an object
-//{"title": req.body.title, etc}
+//_______________________________________________________________________
+//// this is an object
+//// {"title": req.body.title, etc}
+//// for authors
 
-
-//for authors
