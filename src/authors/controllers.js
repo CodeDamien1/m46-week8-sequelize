@@ -1,6 +1,8 @@
 const Author = require("./model")
 const Book = require("../books/model")
 
+
+//================================= Adding An Author ====================================
 const addAuthor = async (req, res) => {
     try {
         const author = await Author.create({ 
@@ -16,7 +18,9 @@ const addAuthor = async (req, res) => {
         console.log(error);
     }
   };
+//_______________________________________________________________________________________
 
+//============================ Getting Both Authors And Books Belonging To Them ===============================
   const getAuthorAndBooks = async (req, res) => {
     try {
         console.log(req.params);
@@ -31,7 +35,7 @@ const addAuthor = async (req, res) => {
         console.log(error);
     }
   };
-
+//_______________________________________________________________________________________
 
 module.exports = {
     addAuthor,

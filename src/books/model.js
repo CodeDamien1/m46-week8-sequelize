@@ -15,7 +15,7 @@ const Book = connection.define("Book", {
   },
 }, {timestamps: false},
    {
-  indexes: [{unique: true, fields: ['title', 'author', 'genre']}]
+    indexes: [{unique: true, fields: ['title', 'author', 'genre']}]
    }
 );
 
