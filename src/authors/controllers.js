@@ -14,26 +14,31 @@ const addAuthor = async (req, res) => {
         author: author,
     };
     res.status(201).json({message: "success", author: author })
+    
     }catch (error){
-        console.log(error);
+        res.status(501).json({message: error.message, error: error});
     }
+
   };
 //_______________________________________________________________________________________
 
 //============================ Getting Both Authors And Books Belonging To Them ===============================
-  const getAuthorAndBooks = async (req, res) => {
+
+const getAuthorAndBooks = async (req, res) => {
+
     try {
         console.log(req.params);
 
         const author = await Author.findOne({
             where: { authorname: req.params.authorname },
             include: Book,
-    });
+        });
+    res.status(200).json({ message: "success", author: author});
 
-        res.status(200).json({ message: "success", author: author});
     } catch (error) {
-        console.log(error);
+        res.status(501).json({message: error.message, error: error});
     }
+
   };
 //_______________________________________________________________________________________
 
